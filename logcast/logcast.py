@@ -38,9 +38,11 @@ class Logcast(object):
         scp = SCPClient(ssh.get_transport())
 
         try:
-            scp.get(remote_file, "{}/input/{}.log".format(ConfigLoader.LOGSTASH_CONFIGS_PATH, log_type))
+            file_dest = "{}/input/{}.log".format(ConfigLoader.LOGSTASH_CONFIGS_PATH, log_type)
+            scp.get(remote_file, file_dest)
             Status.show('File {}.log has been successfuly created'.format(log_type), True)
             scp.close()
+            return file_dest
         except:
             Status.show('Something went wrong creating {}.log'.format(log_type), False)
 
