@@ -17,8 +17,8 @@ class Status(object):
     @staticmethod
     def show(message, success):
         if success is True:
-            print(message + StatusColors.OKGREEN + '  ' + 'done' + StatusColors.ENDC)
+            print(message + StatusColors.OKGREEN + ' ' + 'done' + StatusColors.ENDC)
         else:
-            print(message)
+            print(message + StatusColors.FAIL + ' ' + 'fail' + StatusColors.ENDC)
 
 
