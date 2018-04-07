@@ -1,5 +1,5 @@
 filter {
-   if [type] == "$1" {
+   if [type] == "{{ type }}" {
      json {
         source => "message"
         target => "document"
@@ -9,7 +9,7 @@ filter {
        timezone => "Etc/UTC"
      }
      mutate {
-        add_field => { "[document][indexname]" => "$1" }
+        add_field => { "[document][indexname]" => "{{ type }}" }
      }
      if "_grokparsefailure" not in [tags] and "_jsonparsefailure" not in [tags] and "_dateparsefailure" not in [tags] {
         mutate {

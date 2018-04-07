@@ -1,0 +1,8 @@
+output {
+    if [type] == "{{ type }}" {
+        elasticsearch {
+            hosts => ["elasticsearch:9200"]
+            index => "%{[document][indexname]}-%{+YYYY.MM}"
+        }
+    }
+}

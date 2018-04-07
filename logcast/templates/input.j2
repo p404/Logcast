@@ -1,7 +1,7 @@
 input {
     file {
-        path => "/etc/logstash/conf.d/input/$1.log"
-        type => "$1"
+        path => "{{ input_file }}"
+        type => "{{ type }}"
         start_position => "beginning"
         sincedb_path => "/dev/null"
     }
