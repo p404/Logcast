@@ -1,0 +1,20 @@
+filter {
+   if [type] == "$1" {
+     json {
+        source => "message"
+        target => "document"
+     }
+     date {
+       match => [ "[document][asctime]", "yyyy-MM-dd HH:mm:ss,SSS" ]
+       timezone => "Etc/UTC"
+     }
+     mutate {
+        add_field => { "[document][indexname]" => "$1" }
+     }
+     if "_grokparsefailure" not in [tags] and "_jsonparsefailure" not in [tags] and "_dateparsefailure" not in [tags] {
+        mutate {
+           remove_field => ["message"]
+        }
+     }
+  }
+}

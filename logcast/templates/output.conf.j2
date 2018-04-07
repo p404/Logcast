@@ -1,0 +1,11 @@
+output {
+    if [type] == "$1" {
+        elasticsearch {
+            hosts => ["elasticsearch:9200"]
+            index => "%{[document][indexname]}-%{+YYYY.MM}"
+            #template => "/etc/logstash/conf.d/templates/$1.json"
+            #template_overwrite => true
+            #template_name => "$1"
+        }
+    }
+}
