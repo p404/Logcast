@@ -17,7 +17,7 @@ class BaseController(ArgparseController):
 
 class IngestController(ArgparseController):
     class Meta:
-        label = 'else'
+        label = 'ingest'
         stacked_on = 'base'
         stacked_type = 'embedded'
 
@@ -44,8 +44,7 @@ class IngestController(ArgparseController):
         if self.app.pargs.file_path and self.app.pargs.type and self.app.pargs.remote_server:
             Status.startup()
             log = Logcast()
-            file_path = log.remote_file(self.app.pargs.remote_server, self.app.pargs.file_path, self.app.pargs.type)
-            print(file_path)
+            input_file_path = log.remote_file(self.app.pargs.remote_server, self.app.pargs.file_path, self.app.pargs.type)
         else:
             self.app.log.error('Please fill the arguments')
 

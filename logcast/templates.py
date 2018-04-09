@@ -14,7 +14,7 @@ class FilterTemplate(object):
         self._output_template(filter_name)
 
     def _input_template(self, filter_name):
-        input_file = ConfigLoader.LOGSTASH_CONFIGS_PATH + '/input/' + filter_name + '.log'
+        input_file = '/etc/logstash/conf.d/input/' + filter_name + '.log'
         input_template_content = self._render('input.j2', type=filter_name, input_file=input_file )
         
         dest_file = ConfigLoader.LOGSTASH_CONFIGS_PATH + '/input.conf'
