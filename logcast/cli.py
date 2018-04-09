@@ -43,8 +43,7 @@ class IngestController(ArgparseController):
     def remote_ingest(self):
         if self.app.pargs.file_path and self.app.pargs.type and self.app.pargs.remote_server:
             Status.startup()
-            log = Logcast()
-            input_file_path = log.remote_file(self.app.pargs.remote_server, self.app.pargs.file_path, self.app.pargs.type)
+            Logcast().analyze(self.app.pargs.remote_server, self.app.pargs.file_path, self.app.pargs.type, 'remote')
         else:
             self.app.log.error('Please fill the arguments')
 

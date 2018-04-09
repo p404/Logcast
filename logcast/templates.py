@@ -5,7 +5,8 @@ from jinja2 import Environment, FileSystemLoader
 
 TEMPLATES_FOLDER = path.dirname(path.abspath(__file__)) + '/templates'
 
-class FilterTemplate(object):
+class FilterTemplates(object):
+
     def __init__(self, filter_name):
         self.jinja = Environment(loader=FileSystemLoader(TEMPLATES_FOLDER),trim_blocks=True)
 
@@ -38,5 +39,3 @@ class FilterTemplate(object):
     def _create_file(self, content, path):
         with open(path, 'w') as file:
             file.write(content)
-
-FilterTemplate('ubiome-pedrito')

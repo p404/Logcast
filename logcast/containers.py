@@ -39,9 +39,3 @@ class Pipeline(object):
 
     def __network(self):
         return self.docker_client.networks.create("logcast", driver="bridge")
-
-    
-# containers = Pipeline()
-# containers.start()
-# sleep(400)
-# containers.stop()

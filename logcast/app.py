@@ -1,17 +1,33 @@
 from pathlib import Path
 from scp import SCPClient
+from time import sleep
 from progress import Status
+from containers import Pipeline
 from config import ConfigLoader
+from templates import FilterTemplates
 from paramiko import SSHClient, SSHConfig, ProxyCommand
 
 HOME_PATH = str(Path.home())
 
 class Logcast(object):
-    def file_handling(self, path):
+
+    def analyze(self, host, file, filter_type, file_location):
+        if file_location == 'remote':
+            file_destination_path = self.__remote_file(host, file, filter_type)
+            FilterTemplates(filter_type)
+            containers = Pipeline()
+            containers.start()
+            # Here we are going to analyze the log
+            # file_destination_path  
+            # Here we are going the send the elasticsearch queries
+            sleep(20)
+            containers.stop()
+    
+    def __local_file(self, path):
         file = open(path, 'r')
         return file.read()
 
-    def remote_file(self, host, remote_file, log_type):
+    def __remote_file(self, host, remote_file, log_type):
         config = SSHConfig()
         config.parse(open('{}/.ssh/config'.format(HOME_PATH)))
 
