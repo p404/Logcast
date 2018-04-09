@@ -1,6 +1,6 @@
+from time import sleep
 from pathlib import Path
 from scp import SCPClient
-from time import sleep
 from progress import Status
 from containers import Pipeline
 from config import ConfigLoader
