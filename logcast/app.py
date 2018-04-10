@@ -1,9 +1,11 @@
 from time import sleep
 from pathlib import Path
 from scp import SCPClient
+from analyzer import Audit
+from elastic import Queries
 from progress import Status
-from containers import Pipeline
 from config import ConfigLoader
+from containers import Pipeline
 from templates import FilterTemplates
 from paramiko import SSHClient, SSHConfig, ProxyCommand
 
@@ -14,13 +16,12 @@ class Logcast(object):
     def analyze(self, host, file, filter_type, file_location):
         if file_location == 'remote':
             file_destination_path = self.__remote_file(host, file, filter_type)
+            
+            log_data = Audit(file_destination_path)
             FilterTemplates(filter_type)
             containers = Pipeline()
             containers.start()
-            # Here we are going to analyze the log
-            # file_destination_path  
-            # Here we are going the send the elasticsearch queries
-            sleep(20)
+            sleep(600)
             containers.stop()
     
     def __local_file(self, path):
