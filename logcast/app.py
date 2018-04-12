@@ -15,13 +15,12 @@ class Logcast(object):
 
     def analyze(self, host, file, filter_type, file_location):
         if file_location == 'remote':
-            file_destination_path = self.__remote_file(host, file, filter_type)
-            
-            log_data = Audit(file_destination_path)
+            file_destination_path = self.__remote_file(host, file, filter_type)            
+            log_data = Audit().load_data(file_destination_path)
             FilterTemplates(filter_type)
             containers = Pipeline()
             containers.start()
-            sleep(600)
+            Queries(log_data, filter_type)
             containers.stop()
     
     def __local_file(self, path):

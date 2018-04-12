@@ -3,9 +3,6 @@ from pprint import pprint
 from progress import Status
 
 class Audit(object):
-    def __init__(self, log_file_path):
-        self.load_data(log_file_path)
-
     def load_data(self, log_file_path):
         try:
             data = []
