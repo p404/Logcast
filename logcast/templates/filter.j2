@@ -5,11 +5,12 @@ filter {
         target => "document"
      }
      date {
-       match => [ "[document][asctime]", "yyyy-MM-dd HH:mm:ss,SSS" ]
+       match    => [ "[document][{{ date_key }}]", "yyyy-MM-dd HH:mm:ss,SSS" ]
        timezone => "Etc/UTC"
      }
      mutate {
-        add_field => { "[document][indexname]" => "{{ type }}" }
+        add_field    => { "[document][indexname]" => "{{ type }}" }
+        remove_field => [ "[document][{{ date_key }}]" ]
      }
      if "_grokparsefailure" not in [tags] and "_jsonparsefailure" not in [tags] and "_dateparsefailure" not in [tags] {
         mutate {
