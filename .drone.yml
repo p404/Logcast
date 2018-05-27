@@ -3,5 +3,4 @@ pipeline:
   logcast:
     image: python:3.5.1-alpine
     commands:
-      - pip install --upgrade pip setuptools wheel
       - pip install -r requirements.txt
