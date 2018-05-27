@@ -34,4 +34,4 @@ class Audit(object):
             return True
         except:
             pass
-            #raise ValueError("Incorrect data format, should be yyyy-MM-dd HH:mm:ss,SSS")
+            # TODO Better errors
