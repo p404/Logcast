@@ -1,6 +1,6 @@
 ---
 pipeline:
   logcast:
-    image: python:3.5.1-alpine
+    image: python:3.7-alpine
     commands:
       - pip install -r requirements.txt
