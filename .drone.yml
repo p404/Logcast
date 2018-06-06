@@ -1,7 +1,0 @@
----
-pipeline:
-  logcast:
-    image: python:3.7-rc
-    commands:
-      - pip install --upgrade pip setuptools wheel
-      - pip install -r requirements.txt

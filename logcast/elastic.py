@@ -1,10 +1,10 @@
 import time
-from progress import Status
+from status import Status
 from elasticsearch import Elasticsearch
 
 class Queries(object):
     def __init__(self, log_data, filter_type):
-        time.sleep(55)
+        time.sleep(70)
         self.es_client = Elasticsearch()        
         self.__all_documents_count(log_data, filter_type)
 

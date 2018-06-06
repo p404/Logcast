@@ -1,4 +1,4 @@
-from progress import Status
+from status import Status
 from app import Logcast
 from cement.core.foundation import CementApp
 from cement.ext.ext_argparse import ArgparseController, expose
@@ -8,9 +8,7 @@ class BaseController(ArgparseController):
         label = 'base'
         description = "Logcast, Tool for generating configuration files for logstash"
         ignore_unknown_arguments = True
-        arguments = [
-            (['-c', '--config'], {'help': 'Config file path', 'action': 'store'})
-        ]
+
 
     def default(self):
         self.app.args.print_help()

@@ -2,7 +2,7 @@ from re import match
 from json import loads
 from random import choice
 from pprint import pprint
-from progress import Status
+from status import Status
 from dateutil.parser import parse
 
 class Audit(object):
@@ -13,8 +13,12 @@ class Audit(object):
                 for line in file:
                     data.append(loads(line))
             Status.show('The log file has valid JSON objects separated by lines, Number of items: {}'.format(len(data)), True)
-            date_key = self.__parse(data)
-            return data, date_key
+            if len(data) > 100:
+                Status.show('The log file has at least 100 items:', True)
+                date_key = self.__parse(data)
+                return data, date_key
+            else:
+                Status.show('Something went wrong number of items of {}.log is not correct'.format(log_file_path), False)    
         except:
             Status.show('Something went wrong parsing {}.log'.format(log_file_path), False)
 
@@ -34,4 +38,3 @@ class Audit(object):
             return True
         except:
             pass
-            # TODO Better errors
