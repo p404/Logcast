@@ -39,17 +39,8 @@ class Logcast(object):
         ssh = SSHClient()
         ssh.load_system_host_keys()
 
-        if '.east' in host:
-            user_config = config.lookup('*.east')
-            proxy = ProxyCommand('ssh -q {}@bastion.ubiome.com nc {} 22'.format(user_config['user'], host))
-            ssh.connect(host, 
-                    username=user_config['user'], 
-                    sock=proxy,
-                    port=user_config['port']
-        )
-        else:
-            user_config = config.lookup(host)
-            ssh.connect(host, username=user_config['username'], port=user_config['port'])
+        user_config = config.lookup(host)
+        ssh.connect(host, username=user_config['username'], port=user_config['port'])
 
         scp = SCPClient(ssh.get_transport(), sanitize=lambda x: x, progress=__remote_progress)
 

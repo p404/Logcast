@@ -26,7 +26,7 @@ class ConfigLoader:
             sys.exit()
 
     def _config_init(self, config_file):
-        example_config = {'logcast': {'filters_deploy_folder': 'ops-tools/roles/setup_logstash/files', 'filters_configs_path' : '/tmp' }}
+        example_config = {'logcast': {'filters_deploy_folder': '/etc/logstash/conf.d/', 'filters_configs_path' : '/tmp' }}
 
         print('ERROR: There is no configuration file at {}'.format(config_file))
         if self._ask_input('INFO: Do you want generate a example config? y/n : '):
