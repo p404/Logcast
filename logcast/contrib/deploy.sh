@@ -17,14 +17,11 @@
     cp $FILTERS_FOLDER/templates/$2.json $OPS_TOOLS_FOLDER/$ROLE_PATH/templates/$2.json
 
     case $1 in
-        elk1-staging.east)
+        servername.com)
             sed -i ''  "s#elasticsearch:9200#http://localhost:9200#g" "$OPS_TOOLS_FOLDER/$ROLE_PATH/$(expr $OUTPUT_NUMBER + 1)_output_$NAME_UNDERSCORE.conf"
             ;;
-        logstash1.east)
-            sed -i ''  "s#elasticsearch:9200#http://elasticsearch-cluster.east:80#g" "$OPS_TOOLS_FOLDER/$ROLE_PATH/$(expr $OUTPUT_NUMBER + 1)_output_$NAME_UNDERSCORE.conf"
-            ;;
-        phi-logstash1.east)
-            sed -i '' "s#elasticsearch:9200#http://phi-elasticsearch1.east:9200#g" "$OPS_TOOLS_FOLDER/$ROLE_PATH/$(expr $OUTPUT_NUMBER + 1)_output_$NAME_UNDERSCORE.conf"
+        another.com)
+            sed -i ''  "s#elasticsearch:9200#http://elasticsearch-cluster.com:80#g" "$OPS_TOOLS_FOLDER/$ROLE_PATH/$(expr $OUTPUT_NUMBER + 1)_output_$NAME_UNDERSCORE.conf"
             ;;
     esac
 
